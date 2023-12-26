@@ -9,6 +9,10 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				fontFamily: {
+					satoshi: ["Satoshi", "sans-serif"],
+					inter: ["Inter", "sans-serif"],
+				},
 				amazon_blue: {
 					light: "#232F3E",
 					DEFAULT: "#131921",
