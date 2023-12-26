@@ -1,5 +1,7 @@
 import "./globals.css";
 
+import Provider from "../components/Provider";
+
 export const metadata = {
 	title: "Amazon ",
 	description: "Developed bya Challeign",
@@ -8,7 +10,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
+			<Provider>
+				<body>{children}</body>
+			</Provider>
 		</html>
 	);
 }

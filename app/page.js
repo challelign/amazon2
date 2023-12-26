@@ -1,9 +1,9 @@
-import Banner from "@/components/Banner";
-import Header from "@/components/Header";
-import ProductFeed from "@/components/ProductFeed";
+import Header from "../components/Header";
 import Image from "next/image";
+import ProductFeed from "../components/ProductFeed";
+import Banner from "@/components/Banner";
 
-export default function Home({ products }) {
+export default function Home() {
 	// console.log(products);
 	return (
 		<div className="bg-gray-100 ">
