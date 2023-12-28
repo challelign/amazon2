@@ -1,7 +1,10 @@
 import CheckOut from "@/components/CheckOut";
 import Header from "@/components/Header";
 import Image from "next/image";
-
+export const metadata = {
+	title: "Amazon Checkout page",
+	description: "Developed bya Challeign",
+};
 const CheckoutPage = () => {
 	return (
 		<div className="bg-gray-100">
