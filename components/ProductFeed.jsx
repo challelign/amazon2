@@ -21,8 +21,9 @@ const ProductFeed = () => {
 
 			{posts
 				?.slice(0, 4)
-				.map(({ id, title, price, description, category, image }) => (
+				.map(({ i, id, title, price, description, category, image }) => (
 					<Product
+						key={i}
 						id={id}
 						title={title}
 						price={price}
@@ -37,13 +38,15 @@ const ProductFeed = () => {
 				src="/image/amazonbg1.jpg"
 				loading="lazy"
 				height={100}
+				alt="bg"
 			/>
 			<div className="md:col-span-2 ">
 				{posts
 					?.slice(4, 5)
-					.map(({ id, title, price, description, category, image }) => (
+					.map(({ i, id, title, price, description, category, image }) => (
 						<Product
 							id={id}
+							key={i}
 							title={title}
 							price={price}
 							description={description}
@@ -55,9 +58,10 @@ const ProductFeed = () => {
 
 			{posts
 				?.slice(5, copiedPosts.length)
-				.map(({ id, title, price, description, category, image }) => (
+				.map(({ i, id, title, price, description, category, image }) => (
 					<Product
 						id={id}
+						key={i}
 						title={title}
 						price={price}
 						description={description}

@@ -2,9 +2,13 @@ import Header from "../components/Header";
 import Image from "next/image";
 import ProductFeed from "../components/ProductFeed";
 import Banner from "@/components/Banner";
-
+export const metadata = {
+	title: "Amazon Shopping",
+	description: "Developed bya Challeign",
+};
 export default function Home() {
 	// console.log(products);
+
 	return (
 		<div className="bg-gray-100 ">
 			<Header />
