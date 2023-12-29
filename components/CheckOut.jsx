@@ -6,6 +6,10 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import CheckOutProduct from "./CheckOutProduct";
 import { formatCurrency } from "@/utils/formatCurrency";
+import { loadStripe } from "@stripe/stripe-js";
+// const stripePromise = loadStripe(process.env.stripe_public_key);
+const stripePromise = loadStripe(process.env.NEXT_STRIPE_PUBLIC_KEY);
+
 const CheckOut = () => {
 	const { data: session, status } = useSession();
 	const items = useSelector(selectItems);
@@ -13,6 +17,29 @@ const CheckOut = () => {
 	// console.log("items from Checkout =>", items);
 
 	// const hasItem = true;
+	const createCheckoutSession = async () => {
+		// console.log("NEXT_STRIPE_PUBLIC_KEY", process.env.NEXT_STRIPE_PUBLIC_KEY);
+		const stripe = await stripePromise;
+		// call the backend to create checkout session..
+		try {
+			const checkoutSession = await fetch("/api/create-checkout-session", {
+				method: "POST",
+				body: JSON.stringify({ items, email: session.user.email }),
+				headers: {
+					"content-type": "application/json",
+				},
+			});
+			const data = await checkoutSession.json();
+			if (checkoutSession.ok) {
+				// console.log(data);
+				stripe?.redirectToCheckout({ sessionId: data.id });
+			} else {
+				throw new Error("Failed to create Stripe Payment");
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 	return (
 		<>
 			{/* Left */}
@@ -56,6 +83,8 @@ const CheckOut = () => {
 							<span className="font-bold ">{formatCurrency(total)}</span>
 						</h2>
 						<button
+							role="link"
+							onClick={createCheckoutSession}
 							className={`button mt-2 ${
 								!session &&
 								"from-gray-300 to-gray-500 border-gray-200 text-gray-200 cursor-not-allowed"
