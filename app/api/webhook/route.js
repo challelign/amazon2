@@ -104,9 +104,9 @@ export const POST = async (req, res) => {
 		}
 	}
 };
-export const config = {
-	api: {
-		bodyParser: false,
-		externalResolver: true,
-	},
-};
+// export const config = {
+// 	api: {
+// 		bodyParser: false,
+// 		externalResolver: true,
+// 	},
+// };
