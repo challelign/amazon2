@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import CheckOutProduct from "./CheckOutProduct";
 import { formatCurrency } from "@/utils/formatCurrency";
 import { loadStripe } from "@stripe/stripe-js";
+import Cookies from "js-cookie";
+
 // const stripePromise = loadStripe(process.env.stripe_public_key);
 const stripePromise = loadStripe(process.env.NEXT_STRIPE_PUBLIC_KEY);
 
@@ -33,6 +35,7 @@ const CheckOut = () => {
 			if (checkoutSession.ok) {
 				// console.log(data);
 				stripe?.redirectToCheckout({ sessionId: data.id });
+				Cookies.remove("BasketCart");
 			} else {
 				throw new Error("Failed to create Stripe Payment");
 			}
