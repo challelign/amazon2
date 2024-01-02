@@ -35,7 +35,7 @@ const CheckOut = () => {
 			if (checkoutSession.ok) {
 				// console.log(data);
 				stripe?.redirectToCheckout({ sessionId: data.id });
-				// Cookies.remove("BasketCart");
+				Cookies.remove("BasketCart");
 			} else {
 				throw new Error("Failed to create Stripe Payment");
 			}
